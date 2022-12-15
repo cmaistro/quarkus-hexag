@@ -1,0 +1,95 @@
+openapi: 3.0.2
+info:
+  title: Order Sample
+  version: "1.0"
+servers:
+- url: https://api.server.test/v1
+paths:
+  /orders:
+    post:
+      operationId: createOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderDto'
+        required: true
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Bad Request
+      x-contentType: application/json
+      x-accepts: application/json
+  /orders/{orderId}:
+    get:
+      operationId: getOrderById
+      parameters:
+      - explode: false
+        in: path
+        name: orderId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDto'
+          description: OK
+        "404":
+          description: Not Found
+      x-accepts: application/json
+components:
+  schemas:
+    OrderDto:
+      example:
+        customerId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        discount: 6.027456183070403
+        freightValue: 1.4658129805029452
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        orderValue: 0.8008281904610115
+        items:
+        - quantity: 5
+          productId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          price: 5.962133916683182
+        - quantity: 5
+          productId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          price: 5.962133916683182
+      properties:
+        id:
+          format: uuid
+          readOnly: true
+          type: string
+        customerId:
+          format: uuid
+          type: string
+        orderValue:
+          readOnly: true
+          type: number
+        discount:
+          type: number
+        freightValue:
+          type: number
+        items:
+          items:
+            $ref: '#/components/schemas/OrderItemDto'
+          type: array
+      type: object
+    OrderItemDto:
+      example:
+        quantity: 5
+        productId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        price: 5.962133916683182
+      properties:
+        productId:
+          format: uuid
+          type: string
+        price:
+          type: number
+        quantity:
+          type: integer
+      type: object

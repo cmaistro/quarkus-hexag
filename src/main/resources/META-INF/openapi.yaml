@@ -1,0 +1,81 @@
+openapi: 3.0.2
+info:
+  title: Order Sample
+  version: "1.0"
+servers:
+- url: https://api.server.test/v1
+paths:
+  /orders:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: OK
+        "404":
+          description: Not Found
+      x-accepts: application/json
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+        required: true
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Bad Request
+      x-contentType: application/json
+      x-accepts: application/json
+components:
+  schemas:
+    Order:
+      example:
+        totalValue: 0
+        customerId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        discount: 6
+        freightValue: 1
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        items:
+        - quantity: 2
+          productId: 5
+          price: 5
+        - quantity: 2
+          productId: 5
+          price: 5
+      properties:
+        id:
+          format: uuid
+          readOnly: true
+          type: string
+        customerId:
+          format: uuid
+          type: string
+        totalValue:
+          type: integer
+        discount:
+          type: integer
+        freightValue:
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/OrderItem'
+          type: array
+      type: object
+    OrderItem:
+      example:
+        quantity: 2
+        productId: 5
+        price: 5
+      properties:
+        productId:
+          type: integer
+        price:
+          type: integer
+        quantity:
+          type: integer
+      type: object

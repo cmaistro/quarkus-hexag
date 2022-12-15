@@ -1,0 +1,81 @@
+openapi: '3.0.2'
+info:
+  title: Order Sample
+  version: '1.0'
+servers:
+  - url: https://api.server.test/v1
+paths:
+  /orders:
+    post:
+      operationId: createOrder
+      tags:
+        - orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OrderDto"
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OrderDto"
+        '400':
+          description: Bad Request
+  /orders/{orderId}:
+    get:
+      operationId: getOrderById
+      tags:
+        - orders
+      parameters:
+        - in: path
+          name: orderId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OrderDto"
+        '404':
+          description: Not Found
+components:
+  schemas:
+    OrderDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        customerId:
+          type: string
+          format: uuid
+        orderValue:
+          type: number
+          readOnly: true
+        discount:
+          type: number
+        freightValue:
+          type: number
+        items:
+          type: array
+          items: 
+            $ref: "#/components/schemas/OrderItemDto"
+    OrderItemDto:
+      type: object
+      properties:
+        productId:
+          type: string
+          format: uuid
+        price:
+          type: number
+        quantity:
+          type: integer
