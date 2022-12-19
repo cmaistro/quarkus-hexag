@@ -34,7 +34,9 @@ public class OrdersResource implements OrdersApi {
 
         order = orderService.createOrder(order);
 
-        return Response.created(UriBuilder.fromUri(uriInfo.getRequestUri()).build()).build();
+        return Response
+                .created(UriBuilder.fromUri(uriInfo.getRequestUri()).path(order.getExternalId().toString()).build())
+                .build();
     }
 
     @Override

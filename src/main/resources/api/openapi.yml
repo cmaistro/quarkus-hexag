@@ -79,3 +79,12 @@ components:
           type: number
         quantity:
           type: integer
+    GeneralError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+        developerMessage:
+          type: string

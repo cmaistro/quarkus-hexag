@@ -7,6 +7,7 @@ import org.jboss.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
+import java.util.UUID;
 
 @ApplicationScoped
 public class OrderService {
@@ -26,6 +27,8 @@ public class OrderService {
         for (OrderValidator validator : orderValidators) {
             validator.validate(order);
         }
+
+        order.setExternalId(UUID.randomUUID());
 
         logger.debug("Order is valid, calling output ports.");
 

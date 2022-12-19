@@ -27,8 +27,10 @@ public class MaximumDiscountValidator implements OrderValidator {
                     .multiply(BigDecimal.valueOf(100)));
             logger.info(String.format("Percent calculated discount value: %s", percentageDiscount));
             if (percentageDiscount.compareTo(maximumDiscount) > 0) {
-                throw new ValidatorException(String.format("Discount value is above the maximum allowed (%s)",
-                        order.getTotalItemsValue().multiply(maximumDiscount)), "ERR-02", "discount");
+                throw new ValidatorException(
+                        String.format("Discount value is above the maximum allowed (%s)",
+                                order.getTotalItemsValue().multiply(maximumDiscount).divide(BigDecimal.valueOf(100))),
+                        "ERR-02", "discount");
             }
         }
     }

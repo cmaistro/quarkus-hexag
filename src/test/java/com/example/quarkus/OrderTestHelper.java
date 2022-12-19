@@ -13,7 +13,7 @@ public class OrderTestHelper {
 
     public static Order createUnsavedTestOrderFactory() {
 
-        return new Order(null, UUID.randomUUID(), UUID.randomUUID(),
+        return new Order(null, null, UUID.randomUUID(),
                 List.of(new OrderItem(1L, UUID.randomUUID(), BigDecimal.valueOf(150), 1L)), BigDecimal.valueOf(10),
                 BigDecimal.valueOf(20));
 

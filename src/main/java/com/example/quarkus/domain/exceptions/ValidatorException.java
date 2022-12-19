@@ -1,7 +1,8 @@
 package com.example.quarkus.domain.exceptions;
 
-import lombok.AllArgsConstructor;
+import lombok.Getter;
 
+@Getter
 public class ValidatorException extends RuntimeException {
 
     private String errorCode;
