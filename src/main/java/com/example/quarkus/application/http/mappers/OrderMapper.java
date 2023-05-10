@@ -2,8 +2,8 @@ package com.example.quarkus.application.http.mappers;
 
 import com.example.quarkus.application.http.dto.OrderDto;
 import com.example.quarkus.application.http.dto.OrderItemDto;
-import com.example.quarkus.domain.Order;
-import com.example.quarkus.domain.OrderItem;
+import com.example.quarkus.domain.model.Order;
+import com.example.quarkus.domain.model.OrderItem;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

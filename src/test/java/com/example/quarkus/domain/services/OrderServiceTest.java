@@ -1,7 +1,7 @@
 package com.example.quarkus.domain.services;
 
 import com.example.quarkus.OrderTestHelper;
-import com.example.quarkus.domain.Order;
+import com.example.quarkus.domain.model.Order;
 import com.example.quarkus.domain.exceptions.ValidatorException;
 import com.example.quarkus.domain.repositories.OrderDataSource;
 import io.quarkus.test.junit.QuarkusTest;

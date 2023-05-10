@@ -1,6 +1,6 @@
 package com.example.quarkus.domain.services;
 
-import com.example.quarkus.domain.Order;
+import com.example.quarkus.domain.model.Order;
 
 public interface OrderValidator {
 

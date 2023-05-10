@@ -1,6 +1,6 @@
 package com.example.quarkus.domain.services.validators;
 
-import com.example.quarkus.domain.Order;
+import com.example.quarkus.domain.model.Order;
 import com.example.quarkus.domain.exceptions.ValidatorException;
 import com.example.quarkus.domain.services.OrderValidator;
 import org.jboss.logging.Logger;

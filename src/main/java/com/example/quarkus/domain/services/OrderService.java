@@ -1,6 +1,6 @@
 package com.example.quarkus.domain.services;
 
-import com.example.quarkus.domain.Order;
+import com.example.quarkus.domain.model.Order;
 import com.example.quarkus.domain.repositories.OrderDataSource;
 import org.jboss.logging.Logger;
 

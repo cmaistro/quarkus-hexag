@@ -1,4 +1,4 @@
-package com.example.quarkus.domain;
+package com.example.quarkus.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

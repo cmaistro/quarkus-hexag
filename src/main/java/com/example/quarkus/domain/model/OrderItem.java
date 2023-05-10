@@ -1,4 +1,4 @@
-package com.example.quarkus.domain;
+package com.example.quarkus.domain.model;
 
 import io.quarkus.arc.All;
 import lombok.AllArgsConstructor;

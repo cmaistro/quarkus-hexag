@@ -1,0 +1,15 @@
+@namespace("om.cmd.create_order")
+protocol OrderRequest {
+    record Order {
+        string customerId;
+        float? discount;
+        float? freightValue;
+        array<Item> items;
+    }
+
+    record Item {
+        string productId;
+        float price;
+        long quantity;
+    }
+}
