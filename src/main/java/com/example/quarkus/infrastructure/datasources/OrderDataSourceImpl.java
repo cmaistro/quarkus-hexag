@@ -2,6 +2,7 @@ package com.example.quarkus.infrastructure.datasources;
 
 import com.example.quarkus.domain.model.Order;
 import com.example.quarkus.domain.repositories.OrderDataSource;
+import com.example.quarkus.infrastructure.pubsub.OrderPubSubGateway;
 import com.example.quarkus.infrastructure.repositories.OrderRepository;
 import com.example.quarkus.infrastructure.repositories.entities.OrderEntity;
 import com.example.quarkus.infrastructure.repositories.mappers.OrderMapper;
@@ -18,6 +19,9 @@ public class OrderDataSourceImpl implements OrderDataSource {
     @Inject
     OrderRepository orderRepository;
 
+    @Inject
+    OrderPubSubGateway orderPubSubGateway;
+
     Logger logger = Logger.getLogger(OrderDataSourceImpl.class);
 
     @Transactional
@@ -28,6 +32,10 @@ public class OrderDataSourceImpl implements OrderDataSource {
 
         orderRepository.persist(orderEntity);
 
-        return orderMapper.toDomain(orderEntity);
+        order = orderMapper.toDomain(orderEntity);
+
+        orderPubSubGateway.sendMessage(order);
+
+        return order;
     }
 }

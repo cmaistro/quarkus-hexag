@@ -13,10 +13,10 @@ import java.util.UUID;
 public class OrderService {
 
     @Inject
-    private OrderDataSource orderDataSource;
+    OrderDataSource orderDataSource;
 
     @Inject
-    private Instance<OrderValidator> orderValidators;
+    Instance<OrderValidator> orderValidators;
 
     Logger logger = Logger.getLogger(OrderService.class);
 

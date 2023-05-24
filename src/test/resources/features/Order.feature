@@ -11,6 +11,7 @@ Feature: Order
     Then User should get a successful response
     And Receive the orderId for this request
     And Save the order successfully
+    And Publish an event with this order
     Examples:
       | discount |
       | 0.0      |
